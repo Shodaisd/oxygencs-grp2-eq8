@@ -44,7 +44,7 @@ RUN apk update && \
 RUN apk del build-base libffi-dev postgresql-dev expat
 
 # Copy dependencies from the build stage
-COPY --from=build /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+COPY --from=build /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
 COPY --from=build /build /app
 
 # Remove pip
