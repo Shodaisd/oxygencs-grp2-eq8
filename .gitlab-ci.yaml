@@ -45,6 +45,8 @@ unit_tests:
 
 build_image:
   stage: build
+  only:
+    - main
   image: docker:stable
   services:
     - docker:dind
