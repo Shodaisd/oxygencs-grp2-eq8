@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oxygenscs-grp2-eq8-deployment
+  name: oxygenscs-grp2-eq8
   namespace: grp02eq8-namespace
   labels:
     app: oxygenscs
@@ -34,9 +34,9 @@ spec:
         resources:
           requests:
             memory: "64Mi"
-            cpu: "250m"
+            cpu: "40m"
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "50m"
       imagePullSecrets:
       - name: my-gitlab-registry

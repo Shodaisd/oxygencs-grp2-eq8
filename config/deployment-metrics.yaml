@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metrics-h24-grp2-eq8
+  namespace: grp02eq8-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metrics-h24-grp2-eq8
+  template:
+    metadata:
+      labels:
+        app: metrics-h24-grp2-eq8
+    spec:
+      containers:
+      - name: metrics-h24-grp2-eq8-container
+        image: registry.gitlab.com/log680/metrics-h24-grp2-eq8:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "40m"
+          limits:
+            memory: "256Mi"
+            cpu: "50m"
+      imagePullSecrets:
+      - name: my-gitlab-registry
