@@ -59,9 +59,12 @@ build_image:
     - docker build -t registry.gitlab.com/log680/oxygencs-grp2-eq8 .
     - docker push registry.gitlab.com/log680/oxygencs-grp2-eq8
 
-deploy_to_dockerhub:
+deploy_to_Kubernetes:
   stage: deploy
   only:
     - main
   script:
-    - echo "Deploying to Docker Hub..."
+    - echo "$KUBECONFIG_CONTENT" > kubeconfig.yaml
+    - export KUBECONFIG=$(pwd)/kubeconfig.yaml
+    - kubectl --kubeconfig=kubeconfig.yaml delete deployment oxygenscs-grp2-eq8
+    - kubectl --kubeconfig=kubeconfig.yaml apply -f config/deployment-HVAC.yaml
