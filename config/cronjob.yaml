@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cronjob-log680
+spec:
+  schedule: "*/1440 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cronjob-log680-container
+            image: vivalareda/cronjob-log680:v1
+          restartPolicy: OnFailure

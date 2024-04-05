@@ -135,5 +135,5 @@ dmypy.json
 deploy_rsa
 deploy_rsa.pub
 
-# Kubernetes config
-kubeconfig.yaml
+# Kubernetes config 
+kubeconf.yaml

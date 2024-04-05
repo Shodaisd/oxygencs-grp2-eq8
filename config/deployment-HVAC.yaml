@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oxygenscs-grp2-eq8
+  namespace: grp02eq8-namespace
+  labels:
+    app: oxygenscs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oxygenscs
+  template:
+    metadata:
+      labels:
+        app: oxygenscs
+    spec:
+      containers:
+      - name: oxygenscs-grp2-eq8-container
+        image: registry.gitlab.com/log680/oxygencs-grp2-eq8:latest
+        ports:
+        - containerPort: 80
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: db-url
+                key: DATABASE_URL
+          - name: HVAC_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: hvac-token
+                key: TOKEN
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "40m"
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+      imagePullSecrets:
+      - name: my-gitlab-registry
